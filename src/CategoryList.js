@@ -1,18 +1,27 @@
 import React, { Component } from "react";
-import {ListGroup, ListGroupItem} from 'reactstrap'
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 export default class CategoryList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [
+        { categoryId: 1, categoryName: "Beverages" },
+        { categoryId: 1, categoryName: "Condiments" },
+      ],
+    };
+  }
   render() {
     return (
       <div>
         <h3>{this.props.info.title}</h3>
-         {/* Props dediğinde CategoryList Component'ne erişmiş oluyorsun. */}
+        {/* Props dediğinde CategoryList Component'ne erişmiş oluyorsun. */}
         <ListGroup>
-          <ListGroupItem>Cras justo odio</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-          <ListGroupItem>Morbi leo risus</ListGroupItem>
-          <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-          <ListGroupItem>Vestibulum at eros</ListGroupItem>
+          {this.state.categories.map((category) => (
+            <ListGroupItem key={category.categoryId}>{category.categoryName}</ListGroupItem>
+            // map fonksiyonu listenin eleman sayısını tek tek döner.
+            // key eklme sebebim her elemanın kendine özgü bir Id almasını sağladım.
+          ))}
         </ListGroup>
       </div>
     );

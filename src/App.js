@@ -8,6 +8,8 @@ function App() {
   let productInfo = {title:"ProductList"}
   let categoryInfo = {title:"CategoryList"}
   // let fonksiyonuyla category List metodunu çağırıyoruz.
+  // Props : Bir componenten diğerine taşınan data.
+  // State : Component içinde bulunan kendine has data.
   return (
     <div>
       <Container>
