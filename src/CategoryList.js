@@ -9,7 +9,11 @@ export default class CategoryList extends Component {
         { categoryId: 1, categoryName: "Beverages" },
         { categoryId: 1, categoryName: "Condiments" },
       ],
+      currentCategory: ""
     };
+  }
+  changeCategory = (category) => {
+    this.setState({ currentCategory: category.categoryName })
   }
   render() {
     return (
@@ -18,11 +22,18 @@ export default class CategoryList extends Component {
         {/* Props dediğinde CategoryList Component'ne erişmiş oluyorsun. */}
         <ListGroup>
           {this.state.categories.map((category) => (
-            <ListGroupItem key={category.categoryId}>{category.categoryName}</ListGroupItem>
+            <ListGroupItem
+              onClick={() => this.changeCategory(category)}
+              key={category.categoryId}
+            >
+              {category.categoryName}
+            </ListGroupItem>
             // map fonksiyonu listenin eleman sayısını tek tek döner.
             // key eklme sebebim her elemanın kendine özgü bir Id almasını sağladım.
+            // onclick event ile basınca bastığımız yazı ön plana çıkıyor.
           ))}
         </ListGroup>
+        <h4>{this.state.currentCategory}</h4>
       </div>
     );
   }
