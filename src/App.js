@@ -5,6 +5,9 @@ import Navi from "./Navi";
 import ProductList from "./ProductList";
 
 function App() {
+  let productInfo = {title:"ProductList"}
+  let categoryInfo = {title:"CategoryList"}
+  // let fonksiyonuyla category List metodunu çağırıyoruz.
   return (
     <div>
       <Container>
@@ -13,10 +16,10 @@ function App() {
         </Row>
         <Row>
           <Col xs="3">
-            <CategoryList />
+            <CategoryList info={categoryInfo} />
           </Col>
           <Col xs="9">
-            <ProductList />
+            <ProductList info={productInfo} />
           </Col>
         </Row>
       </Container>
