@@ -6,12 +6,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
+  NavLink
 } from "reactstrap";
-// import CartSummary from "./CartSummary";
-// import { Link } from "react-router-dom";
+import CartSummary from "./CartSummary";
+//import { Link } from "react-router-dom";
 
 export default class Navi extends React.Component {
   constructor(props) {
@@ -19,12 +17,12 @@ export default class Navi extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false,
+      isOpen: false
     };
   }
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen,
+      isOpen: !this.state.isOpen
     });
   }
   render() {
@@ -36,23 +34,24 @@ export default class Navi extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink>{/* <Link to="form1">Form Demo 1</Link> */}</NavLink>
+                <NavLink>
+                  {/* <Link to="form1">Form Demo 1</Link> */}
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>{/* <Link to="form2">Form Demo 2</Link> */}</NavLink>
+                <NavLink>
+                  {/* <Link to="form2">Form Demo 2</Link> */}
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  GitHub
+                </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  options - {this.props.cart.length}
-                </DropdownToggle>
-              </UncontrolledDropdown>
-              {/* <CartSummary
+              <CartSummary
                 removeFromCart={this.props.removeFromCart}
                 cart={this.props.cart}
-              /> */}
+              />
             </Nav>
           </Collapse>
         </Navbar>
