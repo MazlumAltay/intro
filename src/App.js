@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
 import CategoryList from "./CategoryList";
 import Navi from "./Navi";
 import ProductList from "./ProductList";
 import alertify from "alertifyjs";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import CartList from "./CartList";
 
@@ -75,6 +75,7 @@ export default class App extends Component {
                   path="/"
                   render={(props) => (
                     <ProductList
+                      {...props} //Propların bir tane kopyasını al onu gönder.
                       products={this.state.products}
                       addToCart={this.addToCart}
                       currentCategory={this.state.currentCategory}
