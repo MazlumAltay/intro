@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import CategoryList from "./CategoryList";
 import Navi from "./Navi";
 import ProductList from "./ProductList";
+import alertify from "alertifyjs";
 
 // let fonksiyonuyla category List metodunu çağırıyoruz.
 // Props : Bir componenten diğerine taşınan data.
@@ -29,22 +30,24 @@ export default class App extends Component {
       .then((data) => this.setState({ products: data }));
   };
 
-  addToCart=(product)=>{
+  addToCart = (product) => {
     let newCart = this.state.cart;
-    var addedItem = newCart.find(c=>c.product.id === product.id);
-    if(addedItem){
-      addedItem.quantity+=1;
-    }else{
-      newCart.push({product:product,quantity:1});
+    var addedItem = newCart.find((c) => c.product.id === product.id);
+    if (addedItem) {
+      addedItem.quantity += 1;
+    } else {
+      newCart.push({ product: product, quantity: 1 });
     }
-    
-    this.setState({cart:newCart});
-  }
 
-  removeFromCart=(product)=>{
-    let newCart = this.state.cart.filter(c=>c.product.id!==product.id)
-    this.setState({cart:newCart})
-  }
+    this.setState({ cart: newCart });
+    alertify.success(product.productName + " added to cart!", 2);
+    //ALertify metodunu import ettim, daha sonra alertify metodunun özelliklerinden birini kullanarak ekleme işleminden sonra bir mesaj vermesini sağladım.
+  };
+
+  removeFromCart = (product) => {
+    let newCart = this.state.cart.filter((c) => c.product.id !== product.id);
+    this.setState({ cart: newCart });
+  };
 
   render() {
     let productInfo = { title: "ProductList" };
@@ -52,8 +55,7 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-
-            <Navi removeFromCart={this.removeFromCart} cart={this.state.cart} />
+          <Navi removeFromCart={this.removeFromCart} cart={this.state.cart} />
 
           <Row>
             <Col xs="3">
