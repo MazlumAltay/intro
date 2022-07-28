@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Form } from "reactstrap";
 import CategoryList from "./CategoryList";
 import Navi from "./Navi";
 import ProductList from "./ProductList";
 import alertify from "alertifyjs";
+import { Route, Switch } from "react-router-dom";
+import NotFound from "./NotFound";
+import CartList from "./CartList";
 
 // let fonksiyonuyla category List metodunu çağırıyoruz.
 // Props : Bir componenten diğerine taşınan data.
@@ -66,12 +69,23 @@ export default class App extends Component {
               />
             </Col>
             <Col xs="9">
-              <ProductList
-                products={this.state.products}
-                addToCart={this.addToCart}
-                currentCategory={this.state.currentCategory}
-                info={productInfo}
-              />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <ProductList
+                      products={this.state.products}
+                      addToCart={this.addToCart}
+                      currentCategory={this.state.currentCategory}
+                      info={productInfo}
+                      //Gönderilecek proplar için ProductList'i render etmesini sağladım.
+                    />
+                  )}
+                />
+                <Route exact path="/cart" component={CartList} />
+                <Route component={NotFound}></Route>
+              </Switch>
             </Col>
           </Row>
         </Container>
